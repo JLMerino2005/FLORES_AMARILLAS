@@ -17,11 +17,6 @@ window.onload = () => {
       if (Math.random() > 0.3) createShootingStar();
     }, Math.random() * 5000 + 3000);
 
-    // Dedicatoria: ?name=Ana
-    const params = new URLSearchParams(location.search);
-    const queryName = params.get('name');
-    if (queryName) document.getElementById('name').textContent = queryName;
-
     // Lluvia de pétalos
     function rainPetals(n=18){
       for(let i=0;i<n;i++){
@@ -41,7 +36,7 @@ window.onload = () => {
   }, 500);
 };
 
-// ========= LOGIN / DESBLOQUEO =========
+// ========= LOGIN / DESBLOQUEO (siempre pide nombre) =========
 (function(){
   const overlay  = document.getElementById('unlockOverlay');
   const form     = document.getElementById('unlockForm');
@@ -51,23 +46,24 @@ window.onload = () => {
   const typed    = document.getElementById('typedMsg');
   const shareBtn = document.getElementById('shareBtn');
 
-  // Si ya se desbloqueó antes, no mostrar el login
-  if (localStorage.getItem('sunflower_unlocked') === '1') {
-    document.body.classList.remove('locked');
-    overlay.classList.add('hide');
-    setTimeout(()=>overlay.remove(), 350);
-    typeMessage();
-  }
+  // Prefill con ?name= en la URL, pero igual muestra el modal
+  const params = new URLSearchParams(location.search);
+  const queryName = params.get('name');
+  if (queryName) nameIn.value = queryName;
 
   function unlock(){
-    // Si el modal tiene un PIN configurado (data-code)
+    // Nombre obligatorio
+    const userName = (nameIn.value || '').trim();
+    if (!userName) {
+      nameIn.placeholder = 'Escribe tu nombre 💛';
+      nameIn.focus();
+      return;
+    }
+    nameSpan.textContent = userName;
+
+    // PIN (opcional) si configuraste data-code en el overlay
     const requiredPin = (overlay.dataset.code || '').trim();
     const userPin     = (pinIn.value || '').trim();
-
-    // Nombre (opcional): si está, úsalo
-    const userName = (nameIn.value || '').trim();
-    if (userName) nameSpan.textContent = userName;
-
     if (requiredPin && requiredPin !== userPin) {
       pinIn.value = '';
       pinIn.placeholder = 'PIN incorrecto 😅';
@@ -80,7 +76,6 @@ window.onload = () => {
     document.body.classList.add('unlocked');
     overlay.classList.add('hide');
     setTimeout(()=>overlay.remove(), 400);
-    localStorage.setItem('sunflower_unlocked','1');
 
     // Lluvia extra y mensaje
     burstPetals();
@@ -89,7 +84,8 @@ window.onload = () => {
 
   // Mensaje tipeado bajo la dedicatoria
   function typeMessage(){
-    const text = "Te quiero mucho 🌻✨";
+    const who = (nameSpan.textContent || '').trim();
+    const text = (who ? `${who}, ` : '') + "te quiero mucho 🌻✨";
     typed.textContent = '';
     let i = 0;
     const iv = setInterval(()=>{

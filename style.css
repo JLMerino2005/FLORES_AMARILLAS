@@ -179,7 +179,7 @@ body{
 .flower__light--7{ left:3vmin;  animation-delay:2s }
 .flower__light--8{ left:-6vmin; animation-delay:3.5s }
 
-/* Césped: (si pegas tus bloques de grass, estos estilos aplican) */
+/* Césped (si agregas los bloques grass) */
 .flower__grass{ --c:#4a7c23; --line-w:2vmin; position:absolute; bottom:12vmin; left:-7vmin;
   display:flex; flex-direction:column; align-items:flex-end; z-index:20;
   transform-origin:bottom center; transform:rotate(-48deg) rotateY(40deg) }
@@ -244,17 +244,6 @@ body{
 @keyframes blooming-leaf-left { 0%{ transform-origin:right; transform:rotate(-70deg) rotateY(30deg) scale(0) } }
 @keyframes grow-flower-tree{ 0%{ height:0; border-radius:1vmin } }
 @keyframes blooming-flower{ 0%{ transform:scale(0) } }
-
-@keyframes moving-grass{ 0%,100%{transform:rotate(-48deg) rotateY(40deg)} 50%{transform:rotate(-50deg) rotateY(40deg)} }
-@keyframes moving-grass--2{ 0%,100%{transform:scale(.5) rotate(75deg) rotateX(10deg) rotateY(-200deg)} 50%{transform:scale(.5) rotate(79deg) rotateX(10deg) rotateY(-200deg)} }
-@keyframes moving-grass--3{ 0%,100%{transform:scale(.7) rotate(-30deg) rotateY(45deg)} 50%{transform:scale(.7) rotate(-33deg) rotateY(50deg)} }
-@keyframes moving-grass--4{ 0%,100%{transform:scale(.4) rotate(60deg) rotateX(15deg) rotateY(-180deg)} 50%{transform:scale(.4) rotate(63deg) rotateX(18deg) rotateY(-175deg)} }
-@keyframes moving-grass--5{ 0%,100%{transform:scale(.6) rotate(-60deg) rotateY(60deg)} 50%{transform:scale(.6) rotate(-57deg) rotateY(65deg)} }
-@keyframes moving-grass--6{ 0%,100%{transform:scale(.65) rotate(35deg) rotateY(-45deg)} 50%{transform:scale(.65) rotate(38deg) rotateY(-40deg)} }
-@keyframes moving-grass--7{ 0%,100%{transform:scale(.45) rotate(-70deg) rotateX(20deg) rotateY(170deg)} 50%{transform:scale(.45) rotate(-67deg) rotateX(23deg) rotateY(175deg)} }
-@keyframes moving-grass--8{ 0%,100%{transform:scale(.55) rotate(50deg) rotateY(-70deg)} 50%{transform:scale(.55) rotate(53deg) rotateY(-65deg)} }
-@keyframes moving-grass--9{ 0%,100%{transform:scale(.3) rotate(20deg) rotateY(90deg)} 50%{transform:scale(.3) rotate(23deg) rotateY(95deg)} }
-@keyframes moving-grass--10{0%,100%{transform:scale(.35) rotate(-45deg) rotateY(-120deg)} 50%{transform:scale(.35) rotate(-42deg) rotateY(-115deg)} }
 
 /* Dedicatoria neón + mensaje tipeado */
 .dedication{
